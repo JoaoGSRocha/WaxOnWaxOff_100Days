@@ -53,6 +53,18 @@ public class Main {
         return bld.toString();
     }
 
+    private static String doesitHaveSpecificWord() throws IOException {
+        var bufferedReader = new BufferedReader(
+                new InputStreamReader(System.in));
+        System.out.println("Check if Word Exists: ");
+        String word;
+        word = bufferedReader.readLine();
+        if(names.contains(word))
+            return word+" is in the list of names.";
+        else
+            return word+" is not in the list.";
+    }
+
     private static String removeNameByIndex() throws IOException {
         var bufferedReader = new BufferedReader(
                 new InputStreamReader(System.in));
@@ -75,6 +87,8 @@ public class Main {
                 return addName();
             case "3":
                 return removeNameByIndex();
+            case "4":
+                return doesitHaveSpecificWord();
             default:
                 return option;
         }
@@ -88,6 +102,7 @@ public class Main {
             System.out.println( "1 - List Names \n" +
                                 "2 - Add Name \n"   +
                                 "3 - Remove Name \n"   +
+                                "4 - Does it Have X Word? \n" +
                                 "0 - Exit Program");
             option = bufferedReader.readLine();
             System.out.println("Option Picked: "+ option);
