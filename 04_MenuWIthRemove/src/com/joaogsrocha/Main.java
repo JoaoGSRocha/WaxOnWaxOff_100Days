@@ -23,23 +23,6 @@ public class Main {
         return "List of Names:" + listOfNames;
     }
 
-    public static boolean isNumeric(String string) {
-        int intValue;
-
-        if(string == null || string.equals("")) {
-            System.out.println("String is null or empty.");
-            return false;
-        }
-
-        try {
-            intValue = Integer.parseInt(string);
-            return true;
-        } catch (NumberFormatException e) {
-            System.out.println("Input String cannot be parsed to Integer.");
-        }
-        return false;
-    }
-
     private static String addName() throws IOException {
         var bufferedReader = new BufferedReader(
                 new InputStreamReader(System.in));
@@ -51,18 +34,6 @@ public class Main {
         bld.append("Names:" + names +"\n"+ "Added Name:"+ name);
         bld.append("\n ----------------------------");
         return bld.toString();
-    }
-
-    private static String doesitHaveSpecificWord() throws IOException {
-        var bufferedReader = new BufferedReader(
-                new InputStreamReader(System.in));
-        System.out.println("Check if Word Exists: ");
-        String word;
-        word = bufferedReader.readLine();
-        if(names.contains(word))
-            return word+" is in the list of names.";
-        else
-            return word+" is not in the list.";
     }
 
     private static String removeNameByIndex() throws IOException {
@@ -87,8 +58,6 @@ public class Main {
                 return addName();
             case "3":
                 return removeNameByIndex();
-            case "4":
-                return doesitHaveSpecificWord();
             default:
                 return option;
         }
@@ -102,14 +71,10 @@ public class Main {
             System.out.println( "1 - List Names \n" +
                                 "2 - Add Name \n"   +
                                 "3 - Remove Name \n"   +
-                                "4 - Does it Have X Word? \n" +
                                 "0 - Exit Program");
             option = bufferedReader.readLine();
             System.out.println("Option Picked: "+ option);
-            if(isNumeric(option))
-                System.out.println(pickMenuOption(option));
-            else
-                option= "404"; // As in not found
+            System.out.println(pickMenuOption(option));
         } while (Integer.parseInt(option) != 0);
     }
 }
