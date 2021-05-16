@@ -91,9 +91,10 @@ public class Main {
         // Now create matcher object.
         Matcher m = r.matcher(line);
         StringBuilder bl = new StringBuilder();
+        bl.append("Original Line: "+ line +"\n");
         if (m.find( )) {
-            bl.append("Found value: " + m.group(0)+"\n");
-            bl.append("Found value: " + m.group(1)+"\n");
+            bl.append("Group 1: " + m.group(0)+"\n");
+            bl.append("Group 2: " + m.group(1)+"\n");
         }else bl.append("NO MATCH");
         return bl.toString();
     }
