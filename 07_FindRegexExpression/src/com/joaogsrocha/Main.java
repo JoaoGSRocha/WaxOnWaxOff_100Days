@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
     private static ArrayList<String> names = new ArrayList<>(Arrays.asList("Banana","With","Tofu"));
@@ -53,6 +55,18 @@ public class Main {
         return bld.toString();
     }
 
+    private static String doesitHaveSpecificWord() throws IOException {
+        var bufferedReader = new BufferedReader(
+                new InputStreamReader(System.in));
+        System.out.println("Check if Word Exists: ");
+        String word;
+        word = bufferedReader.readLine();
+        if(names.contains(word))
+            return word+" is in the list of names.";
+        else
+            return word+" is not in the list.";
+    }
+
     private static String removeNameByIndex() throws IOException {
         var bufferedReader = new BufferedReader(
                 new InputStreamReader(System.in));
@@ -65,7 +79,24 @@ public class Main {
         bld.append("\n ----------------------------");
         return bld.toString();
     }
-    
+
+    private static String regex() {
+        // String to be scanned to find the pattern.
+        String line = "2019-12-31\t26\t31\t33\t41\t48\t\t02\t04";
+        String pattern = "(\\d+-\\d+-\\d+)(\\t)(\\d+.+)";
+
+        // Create a Pattern object
+        Pattern r = Pattern.compile(pattern);
+
+        // Now create matcher object.
+        Matcher m = r.matcher(line);
+        StringBuilder bl = new StringBuilder();
+        if (m.find( )) {
+            bl.append("Found value: " + m.group(0)+"\n");
+            bl.append("Found value: " + m.group(1)+"\n");
+        }else bl.append("NO MATCH");
+        return bl.toString();
+    }
 
 
     private static String pickMenuOption(String option) throws IOException {
@@ -76,6 +107,10 @@ public class Main {
                 return addName();
             case "3":
                 return removeNameByIndex();
+            case "4":
+                return doesitHaveSpecificWord();
+            case "5":
+                return regex();
             default:
                 return option;
         }
@@ -87,9 +122,11 @@ public class Main {
         String option;
         do{
             System.out.println( "1 - List Names \n" +
-                                "2 - Add Name \n"   +
-                                "3 - Remove Name \n"   +
-                                "0 - Exit Program");
+                    "2 - Add Name \n"   +
+                    "3 - Remove Name \n"   +
+                    "4 - Does it Have X Word? \n" +
+                    "5 - Regex Matcher \n" +
+                    "0 - Exit Program");
             option = bufferedReader.readLine();
             System.out.println("Option Picked: "+ option);
             if(isNumeric(option))
