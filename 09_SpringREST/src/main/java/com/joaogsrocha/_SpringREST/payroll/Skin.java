@@ -63,6 +63,6 @@ class Skin {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", condition='" + condition + '\'' +
-                '}';
+                "} \n";
     }
 }
