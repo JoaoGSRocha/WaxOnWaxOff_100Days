@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "344d47db-5809-40c2-8021-c3d5939579d5",
+		"name": "WaxOnWaxOff_100DaysOfCOde",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add Skin",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{serverUrl}}/api/skin",
+					"host": [
+						"{{serverUrl}}"
+					],
+					"path": [
+						"api",
+						"skin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Single Skin",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{serverUrl}}/skins/:id",
+					"host": [
+						"{{serverUrl}}"
+					],
+					"path": [
+						"skins",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Skins",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{serverUrl}}/skins/",
+					"host": [
+						"{{serverUrl}}"
+					],
+					"path": [
+						"skins",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Skin",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{serverUrl}}/skins/:id",
+					"host": [
+						"{{serverUrl}}"
+					],
+					"path": [
+						"skins",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Skin",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Postman Test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{serverUrl}}/skins/:id",
+					"host": [
+						"{{serverUrl}}"
+					],
+					"path": [
+						"skins",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
