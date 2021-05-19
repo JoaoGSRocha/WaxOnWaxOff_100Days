@@ -1,4 +1,4 @@
-package com.joaogsrocha._SpringREST.payroll;
+package com.joaogsrocha._SpringREST.skin;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

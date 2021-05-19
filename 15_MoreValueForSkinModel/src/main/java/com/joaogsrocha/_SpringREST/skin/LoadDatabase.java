@@ -1,4 +1,4 @@
-package com.joaogsrocha._SpringREST.payroll;
+package com.joaogsrocha._SpringREST.skin;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

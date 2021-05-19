@@ -1,12 +1,10 @@
-package com.joaogsrocha._SpringREST.payroll;
+package com.joaogsrocha._SpringREST.skin;
 
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 class SkinController {
-    private final SkinRepository repository;
+/*    private final SkinRepository repository;
 
     SkinController(SkinRepository repository) {
         this.repository = repository;
@@ -34,14 +32,13 @@ class SkinController {
                 .orElseThrow(() -> new SkinNotFoundException(id));
     }
 
-    @PatchMapping("api/skin/{id}")
+*//*    @PatchMapping("api/skin/{id}")
     Skin replaceSkin(@RequestBody Skin newSkin, @PathVariable Long id) {
         return repository.findById(id)
             .map(skin -> {
                 skin.setName(newSkin.getName() != null? newSkin.getName() : skin.getName());
                 skin.setRarity(newSkin.getRarity() != null ? newSkin.getRarity() : skin.getRarity());
                 skin.setCondition(newSkin.getCondition() != null ? newSkin.getCondition() : skin.getCondition());
-                skin.setExpansionCode(newSkin.getExpansionCode() != null ? newSkin.getExpansionCode() : skin.getExpansionCode());
                 skin.setPrice(newSkin.getPrice() != null ? newSkin.getPrice() : skin.getPrice());
                 skin.setReleaseDate(newSkin.getReleaseDate() != null ? newSkin.getReleaseDate() : skin.getReleaseDate());
                 return repository.save(skin);
@@ -50,7 +47,7 @@ class SkinController {
             newSkin.setId(id);
             return repository.save(newSkin);
             });
-    }
+    }*//*
 
     @DeleteMapping("api/skin/{id}")
     void deleteSkin(@PathVariable Long id) {
@@ -60,5 +57,5 @@ class SkinController {
     @DeleteMapping("api/skin")
     void deleteAll() {
         repository.deleteAll();
-    }
+    }*/
 }

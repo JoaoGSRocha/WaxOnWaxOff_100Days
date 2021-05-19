@@ -1,4 +1,4 @@
-package com.joaogsrocha._SpringREST.payroll;
+package com.joaogsrocha._SpringREST.skin;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
