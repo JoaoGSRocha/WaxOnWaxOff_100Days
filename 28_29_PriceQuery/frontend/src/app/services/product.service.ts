@@ -18,15 +18,20 @@ export class ProductService {
   getProductList(): Observable<Skin[]>;
   getProductList(thisCategoryId: number): Observable<Skin[]>;
   getProductList(thisCategoryId: number, theUnitStock: number): Observable<Skin[]>;
-  getProductList(theCategoryId?: number, theUnitStock?: number): Observable<Skin[]>  {
+  getProductList(theCategoryId?: number, theUnitStock?: number, priceMin?: number, priceMax?: number):
+    Observable<Skin[]>;
+  getProductList(theCategoryId?: number, theUnitStock?: number, priceMin?: number, priceMax?: number):
+    Observable<Skin[]>  {
     let searchUrl = '';
-    if(!theCategoryId && !theUnitStock && theUnitStock !== 0){
+    if(!theCategoryId && !theUnitStock && theUnitStock !== 0 && (!priceMin && priceMin !== 0) && (!priceMax && priceMax !== 0)){
       searchUrl = `${this.baseUrl}`;
     }
-    else if(!theCategoryId)
-      searchUrl = `${this.baseUrl}/search/findByUnitsInStockLessThanEqual?units_in_stock=${theUnitStock}`;
-    else if(!theUnitStock && theUnitStock !== 0)
+    else if(!theCategoryId && !theUnitStock && theUnitStock !== 0)
+      searchUrl = `${this.baseUrl}/search/findByPriceBetween?price1=${priceMin}&price2=${priceMax}`;
+    else if(!theUnitStock && theUnitStock !== 0 && (!priceMin && priceMin !== 0) && (!priceMax && priceMax !== 0))
       searchUrl = `${this.baseUrl}/search/findByExpansionId?id=${theCategoryId}`;
+    else if((!priceMin && priceMin !== 0) && (!priceMax && priceMax !== 0))
+      searchUrl = `${this.baseUrl}/search/findByUnitsInStockLessThanEqual?units_in_stock=${theUnitStock}`;
     else
       searchUrl = `${this.baseUrl}/search/findByExpansionIdAndUnitsInStockLessThanEqual?id=${theCategoryId}
         &units_in_stock=${theUnitStock}`;

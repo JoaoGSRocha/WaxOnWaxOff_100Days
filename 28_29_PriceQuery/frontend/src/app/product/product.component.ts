@@ -12,11 +12,11 @@ import {LabelType, Options} from '@angular-slider/ngx-slider';
 })
 export class ProductComponent implements OnInit {
 
-  minValue: number = 1;
-  maxValue: number = 400;
+  minValue: any = 1;
+  maxValue: any = 40;
   options: Options = {
     floor: 0,
-    ceil: 500,
+    ceil: 40,
     translate: (value: number, label: LabelType): string => {
       switch (label) {
         case LabelType.Low:
@@ -30,8 +30,8 @@ export class ProductComponent implements OnInit {
   };
 
   skins: Skin[] = [];
-  currentExpansionId: any = 0;
-  currentUnitsInStock: any = 100;
+  currentExpansionId: any = null;
+  currentUnitsInStock: any = null;
   // @ts-ignore
   public totalAngularPackages;
   constructor(private productService: ProductService,
@@ -59,6 +59,9 @@ export class ProductComponent implements OnInit {
 
     const hasUnitsInStock: boolean = this.route.snapshot.paramMap.has("units_in_stock");
 
+    const hasMinPrice: boolean = this.route.snapshot.paramMap.has("price1");
+    const hasMaxPrice: boolean = this.route.snapshot.paramMap.has("price2");
+
     if(hasExpansionId) {
       //get the 'id' param string. convert string to a number using the "+" symbol
       // @ts-ignore
@@ -75,7 +78,8 @@ export class ProductComponent implements OnInit {
 
 
     // now get the skins for the given expansion id
-    this.productService.getProductList(this.currentExpansionId, this.currentUnitsInStock).subscribe(
+    this.productService.getProductList(this.currentExpansionId, this.currentUnitsInStock,
+      this.minValue, this.maxValue).subscribe(
       data => {
         this.skins = data;
       }
