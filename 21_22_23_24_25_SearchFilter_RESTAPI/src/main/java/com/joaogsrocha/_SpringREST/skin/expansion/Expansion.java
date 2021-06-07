@@ -1,11 +1,9 @@
 package com.joaogsrocha._SpringREST.skin.expansion;
 
-import com.joaogsrocha._SpringREST.skin.Skin;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name="expansion", schema = "avarum_shop")
@@ -18,6 +16,6 @@ public class Expansion {
     private Long id;
     @Column(name = "expansioncode")
     private String expansionCode;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "expansion")
-    private Set<Skin> skins;
+/*    @OneToMany(cascade = CascadeType.ALL, mappedBy = "expansion")
+    private Set<Skin> skins;*/
 }

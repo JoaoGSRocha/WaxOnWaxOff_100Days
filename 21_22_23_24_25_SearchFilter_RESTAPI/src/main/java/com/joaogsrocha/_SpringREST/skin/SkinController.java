@@ -1,61 +1,33 @@
 package com.joaogsrocha._SpringREST.skin;
 
-import org.springframework.web.bind.annotation.RestController;
+import com.joaogsrocha._SpringREST.experiment.ISkinDao;
+import com.joaogsrocha._SpringREST.experiment.SearchCriteria;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+@CrossOrigin("http://localhost:4200")
 @RestController
-class SkinController {
-/*    private final SkinRepository repository;
+public class SkinController {
 
-    SkinController(SkinRepository repository) {
-        this.repository = repository;
+    @Autowired
+    private ISkinDao api;
+
+    @RequestMapping(method = RequestMethod.GET, value = "/skins")
+    @ResponseBody
+    public List<Skin> findAll(@RequestParam(value = "search", required = false) String search) {
+        List<SearchCriteria> params = new ArrayList<SearchCriteria>();
+        if (search != null) {
+            Pattern pattern = Pattern.compile("(\\w+?)(:|<|>)(\\w+?),");
+            Matcher matcher = pattern.matcher(search + ",");
+            while (matcher.find()) {
+                params.add(new SearchCriteria(matcher.group(1),
+                        matcher.group(2), matcher.group(3)));
+            }
+        }
+        return api.searchSkin(params);
     }
-
-    // Aggregate root
-    // tag::get-aggregate-root[]
-    @GetMapping("api/skin")
-    List<Skin> all() {
-        return repository.findAll();
-    }
-    // end::get-aggregate-root[]
-
-    @PostMapping("api/skin")
-    Skin newSkin(@RequestBody Skin newSkin) {
-        return repository.save(newSkin);
-    }
-
-    // Single item
-
-    @GetMapping("api/skin/{id}")
-    Skin one(@PathVariable Long id) {
-
-        return repository.findById(id)
-                .orElseThrow(() -> new SkinNotFoundException(id));
-    }
-
-*//*    @PatchMapping("api/skin/{id}")
-    Skin replaceSkin(@RequestBody Skin newSkin, @PathVariable Long id) {
-        return repository.findById(id)
-            .map(skin -> {
-                skin.setName(newSkin.getName() != null? newSkin.getName() : skin.getName());
-                skin.setRarity(newSkin.getRarity() != null ? newSkin.getRarity() : skin.getRarity());
-                skin.setCondition(newSkin.getCondition() != null ? newSkin.getCondition() : skin.getCondition());
-                skin.setPrice(newSkin.getPrice() != null ? newSkin.getPrice() : skin.getPrice());
-                skin.setReleaseDate(newSkin.getReleaseDate() != null ? newSkin.getReleaseDate() : skin.getReleaseDate());
-                return repository.save(skin);
-            })
-            .orElseGet(() -> {
-            newSkin.setId(id);
-            return repository.save(newSkin);
-            });
-    }*//*
-
-    @DeleteMapping("api/skin/{id}")
-    void deleteSkin(@PathVariable Long id) {
-        repository.deleteById(id);
-                }
-
-    @DeleteMapping("api/skin")
-    void deleteAll() {
-        repository.deleteAll();
-    }*/
 }

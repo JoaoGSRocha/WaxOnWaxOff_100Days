@@ -1,0 +1,29 @@
+
+<div class="product-sidebar-widget">
+  <div class="custom-control custom-checkbox" *ngFor="let tempExpansion of expansions">
+    <a routerLink="/expansion/{{tempExpansion.id}}" routerLinkActive="active-link">
+      {{tempExpansion.expansionCode}}
+    </a>
+  </div>
+  <h4 class="product-sidebar-widget-title">Category</h4>
+  <div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="cat-1">
+    <label class="custom-control-label" for="cat-1">Categories #1</label>
+  </div>
+  <div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="cat-2">
+    <label class="custom-control-label" for="cat-2">Categories #2</label>
+  </div>
+  <div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="cat-3">
+    <label class="custom-control-label" for="cat-3">Categories #3</label>
+  </div>
+  <div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="cat-4">
+    <label class="custom-control-label" for="cat-4">Categories #4</label>
+  </div>
+  <div class="custom-control custom-checkbox">
+    <input type="checkbox" class="custom-control-input" id="cat-5">
+    <label class="custom-control-label" for="cat-5">Categories #5</label>
+  </div>
+</div>
