@@ -1,0 +1,9 @@
+
+<div class="product-sidebar-widget">
+  <h4 class="product-sidebar-widget-title">Category</h4>
+  <div class="custom-control custom-checkbox" *ngFor="let tempExpansion of expansions">
+    <a routerLink="/expansion/{{tempExpansion.id}}" routerLinkActive="active-link">
+      {{tempExpansion.expansionCode}}
+    </a>
+  </div>
+</div>
