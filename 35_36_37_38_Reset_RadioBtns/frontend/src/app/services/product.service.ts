@@ -25,7 +25,7 @@ export class ProductService {
                  rarity?: string, condition?: string):
     Observable<Skin[]>  {
     let searchUrl = '';
-    if(theCategoryId && stockMax  && priceMax && rarity && condition){
+    if(theCategoryId){
       searchUrl =
         `${this.baseUrl}/search/findByExpansionIdAndUnitsInStockBetweenAndPriceBetweenAndRarityContainingIgnoreCaseAndConditionContainingIgnoreCase?id=${theCategoryId}&stockMin=${stockMin}&stockMax=${stockMax}&price1=${priceMin}&price2=${priceMax}&rarity=${rarity}&condition=${condition}`;
     }

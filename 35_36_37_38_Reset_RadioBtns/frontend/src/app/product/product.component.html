@@ -62,8 +62,17 @@
       <div class="product-sidebar-widget">
         <h4 class="mb-0">E-Commerce Filter</h4>
       </div>
-      <app-product-category-menu></app-product-category-menu>
       <form [formGroup]="rarityFB">
+        <div class="product-sidebar-widget">
+          <h4 class="product-sidebar-widget-title">Category</h4>
+          <div class="custom-control custom-checkbox" *ngFor="let tempExpansion of expansions"
+               (click)="currentExpansionId = tempExpansion.id; listExpansions()">
+            {{tempExpansion.expansionCode}}
+          </div>
+        </div>
+        <div class="product-sidebar-widget">
+          <div (click)="resetExpansion();" class="btn btn-outline-light">Restore Defaults</div>
+        </div>
         <fieldset id="group1">
         <div class="product-sidebar-widget">
           <h4 class="product-sidebar-widget-title">Rarity</h4>

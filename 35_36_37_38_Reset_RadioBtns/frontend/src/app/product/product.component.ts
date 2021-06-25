@@ -7,6 +7,7 @@ import {LabelType, Options} from '@angular-slider/ngx-slider';
 import {MatRadioModule} from '@angular/material/radio';
 import {FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { FormControl } from '@angular/forms';
+import {Expansion} from "../common/expansion";
 
 @Component({
   selector: 'app-product',
@@ -21,6 +22,7 @@ export class ProductComponent implements OnInit {
   maxValue: any = 40;
   rarity: string = "";
   condition: string = "";
+  expansions: Expansion[] = [];
   priceOptions: Options = {
     floor: 0,
     ceil: 40,
@@ -68,6 +70,11 @@ export class ProductComponent implements OnInit {
               private route: ActivatedRoute, private http: HttpClient) {
   }
 
+  resetExpansion() {
+    this.currentExpansionId = 0;
+    this.listProducts();
+  }
+
   resetRarity() {
     this.rarity = '';
     this.rarityFB.controls.rarity.patchValue('');
@@ -84,6 +91,7 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
       this.listProducts();
+      this.listExpansions();
     });
 
     // Simple GET request with response type <any>
@@ -114,7 +122,7 @@ export class ProductComponent implements OnInit {
 
   listProducts() {
     // check if 'id' parameter is available
-    const hasExpansionId: boolean = this.route.snapshot.paramMap.has("id");
+    const hasExpansionId: boolean = (this.currentExpansionId !== null);
     const hasStockMin: boolean = this.route.snapshot.paramMap.has("stockMin");
     const hasStockMax: boolean = this.route.snapshot.paramMap.has("stockMax");
     const hasMinPrice: boolean = this.route.snapshot.paramMap.has("price1");
@@ -122,13 +130,7 @@ export class ProductComponent implements OnInit {
     const hasRarity: boolean = this.route.snapshot.paramMap.has("rarity");
     const hasCondition: boolean = this.route.snapshot.paramMap.has("condition");
 
-    if(hasExpansionId) {
-      //get the 'id' param string. convert string to a number using the "+" symbol
-      // @ts-ignore
-      this.currentExpansionId = +this.route.snapshot.paramMap.get('id');
-    }
-    else {
-      // not category id available ... default to category id 0
+    if(!hasExpansionId) {
       this.currentExpansionId = 0;
     }
     if(hasStockMax) {
@@ -141,6 +143,16 @@ export class ProductComponent implements OnInit {
       this.minValue, this.maxValue, this.rarity, this.condition).subscribe(
       data => {
         this.skins = data;
+      }
+    )
+  }
+
+  listExpansions() {
+    this.productService.getProductExpansions().subscribe(
+      data => {
+        console.log('Product Categories=' + JSON.stringify(data));
+        this.expansions = data;
+        this.listProducts();
       }
     )
   }
