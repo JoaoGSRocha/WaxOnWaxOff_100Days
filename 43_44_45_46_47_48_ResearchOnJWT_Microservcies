@@ -1,0 +1,12 @@
+42 - Tried to understand this as best as possible plus do till the part we get all the services but not the authentication yet( since we opted out of OAuth 2.0)
+https://developer.okta.com/blog/2019/08/28/reactive-microservices-spring-cloud-gateway#create-a-spring-cloud-gateway-project
+-------------
+43 - Analysed further this one - https://developer.okta.com/blog/2019/08/28/reactive-microservices-spring-cloud-gateway#create-a-spring-cloud-gateway-project 
+(essentialy part II)(Also analyses of OAuth and if that is what we wanted for the analysis of the next day)
+44 - Research on Interview Question regarding security with Token and only one request to the API
+45 - Same part II
+46 - Same part III
+47 - Same part IV
+48 - (Discord Brainstorming after Reserarch on Interview Question regarding Spring Security)
+49 - https://oril.co/blog/spring-cloud-gateway-security-with-jwt// https://github.com/igorkosandyak/spring-cloud-demo (Copied the project as well)
+49 - (ALso a lot of freaking out in despair and trying to believe that I can finish the rest of the portfolio in the next 7 days)
