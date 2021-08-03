@@ -9,6 +9,7 @@ import {FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import {Expansion} from "../common/expansion";
 
+// @ts-ignore
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -48,6 +49,8 @@ export class ProductComponent implements OnInit {
 
   skins: Skin[] = [];
   currentExpansionId: any = null;
+  stripe_prices_ids: Array<string> = [];
+  stripe_prices_quant: number = 0;
   minStock: any = 0;
   maxStock: any = 300;
   stockOptions: Options = {
@@ -70,6 +73,31 @@ export class ProductComponent implements OnInit {
               private route: ActivatedRoute, private http: HttpClient) {
   }
 
+  countPricesQuantity(array: Array<string>) {
+    let a = [],
+      b = [],
+      arr = [...array], // clone array so we don't change the original when using .sort()
+      prev;
+
+    arr.sort();
+    for (let element of arr) {
+      if (element !== prev) {
+        a.push(element);
+        b.push(1);
+      }
+      else ++b[b.length - 1];
+      prev = element;
+    }
+
+    return [a, b];
+  }
+
+  addToCart(price_id: string) {
+    this.stripe_prices_ids.push(price_id);
+    const test = this.countPricesQuantity(this.stripe_prices_ids);
+    console.log(test);
+  }
+
   resetExpansion() {
     this.currentExpansionId = 0;
     this.listProducts();
@@ -86,7 +114,6 @@ export class ProductComponent implements OnInit {
     this.conditionFB.controls.condition.patchValue('');
     this.listProducts()
   }
-
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(() => {
@@ -156,5 +183,4 @@ export class ProductComponent implements OnInit {
       }
     )
   }
-
 }

@@ -1,5 +1,6 @@
 export class Skin {
   sku: string = "";
+  stripe_price: string = "";
   name: string = "";
   description: string = "";
   rarity: string = "";

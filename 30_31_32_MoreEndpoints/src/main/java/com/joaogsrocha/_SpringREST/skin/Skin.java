@@ -22,6 +22,8 @@ public class Skin {
     private Expansion expansion;
     @Column(name = "sku")
     private String sku;
+    @Column(name = "stripe_price")
+    private String stripe_price;
     @Column(name = "name")
     private String name;
     @Column(name = "description")
