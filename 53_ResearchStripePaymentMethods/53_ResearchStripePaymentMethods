@@ -1,0 +1,8 @@
+https://stripe.com/docs/connect/destination-charges
+(After all direct charges is all we need)
+https://stripe.com/docs/connect/direct-charges#direct-charges
+(And after all for our simple project we won't even need that...at least for now)
+We can simply have our account and that is it
+
+I just investigated that for a short time and then I went full-throttle with trying to find "a good already existant industry standard" booking solution.
+Then I proceeded to go further down into the rabbit hole and try to answer how to "Threading handling" the race condition of several users trying to book the same room/product at the same time knowing there is only one left. How would the frontend update this value. More specifically what is the best way to do so? 
